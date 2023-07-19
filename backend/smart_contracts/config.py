@@ -6,7 +6,7 @@ from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
 from beaker import Application
 
-from smart_contracts.calculator.contract import app as calculator_app
+from smart_contracts.counter.contract import app as counter_app
 
 
 @dataclasses.dataclass
@@ -18,4 +18,4 @@ class SmartContract:
 
 
 # define contracts to build
-contracts = [SmartContract(app=calculator_app)]
+contracts = [SmartContract(app=counter_app)]
