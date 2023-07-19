@@ -1,6 +1,6 @@
 ## How to add new smart contracts?
 
-By the default the template creates a single `HelloWorld` contract under calculator folder in the `smart_contracts` directory. To add a new contract:
+By the default the template creates a single `HelloWorld` contract under counter folder in the `smart_contracts` directory. To add a new contract:
 
 1. Create a new folder under `smart_contracts` directory and add define your new contract in `contract.py` file.
 2. Each contract has potentially has different creation parameters and deployment steps. Hence, you need to define your deployment logic in `deploy-config.ts`file.

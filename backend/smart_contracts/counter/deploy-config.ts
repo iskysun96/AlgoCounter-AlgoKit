@@ -1,9 +1,9 @@
 import * as algokit from '@algorandfoundation/algokit-utils'
-import { CalculatorClient } from '../artifacts/calculator/client'
+import { CounterClient } from '../artifacts/counter/client'
 
 // Below is a showcase of various deployment options you can use in TypeScript Client
 export async function deploy() {
-  console.log('=== Deploying Calculator ===')
+  console.log('=== Deploying Counter ===')
 
   const algod = algokit.getAlgoClient()
   const indexer = algokit.getAlgoIndexerClient()
@@ -19,8 +19,7 @@ export async function deploy() {
     },
     algod,
   )
-  const isMainNet = await algokit.isMainNet(algod)
-  const appClient = new CalculatorClient(
+  const appClient = new CounterClient(
     {
       resolveBy: 'creatorAndName',
       findExistingUsing: indexer,
@@ -29,11 +28,11 @@ export async function deploy() {
     },
     algod,
   )
+
   const app = await appClient.deploy({
     onSchemaBreak: 'append',
     onUpdate: 'append',
   })
-  
 
   // If app was just created fund the app account
   if (['create', 'replace'].includes(app.operationPerformed)) {
@@ -47,7 +46,7 @@ export async function deploy() {
     )
   }
 
-  const method = 'hello'
-  const response = await appClient.hello({ name: 'world' })
-  console.log(`Called ${method} on ${app.name} (${app.appId}) with name = world, received: ${response.return}`)
+  const method = 'increment'
+  const response = await appClient.increment({})
+  console.log(`Called ${method} on ${app.name} (${app.appId}) received: ${response.return}`)
 }
